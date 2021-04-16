@@ -13,7 +13,7 @@
     "discord-db"
   ],
   "author": "Clapping#7704",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "sequelize": "^5.18.0",
     "sqlite3": "^4.1.0"
