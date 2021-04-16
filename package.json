@@ -21,9 +21,6 @@
   "dist-tags": {
     "latest": "1.3.3"
   },
-  "publishConfig": {
-    "registry":"https://github.com/ChaotiqueSlime/djs-economy"
-  },
   "bugs": {
     "url": "https://github.com/ChaotiqueSlime/djs-economy/issues"
   },
