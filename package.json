@@ -10,7 +10,10 @@
     "discord",
     "database",
     "discord-economy",
-    "discord-db"
+    "discord-db",
+    "economy",
+    "currency",
+    "money"
   ],
   "author": "Clapping#7704",
   "license": "MIT",
