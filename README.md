@@ -5,7 +5,7 @@
     <a href="https://nodei.co/npm/djs-economy/"><img src="https://nodei.co/npm/djs-economy.png?downloads=true&stars=true" alt="NPM info" /></a>
   </p>
   <p>
-    <a href="https://discord.gg/yv3s3b97Sn"><img src="https://discord.com/api/guilds/753396798680465499/widget.json" alt="Discord server" /></a>
+    <a href="https://discord.gg/yv3s3b97Sn"><img src="https://discord.com/api/guilds/464316540490088448/widget.json" alt="Discord server" /></a>
     <a href="https://www.npmjs.com/package/djs-economy"><img src="https://img.shields.io/npm/v/djs-economy.svg" alt="NPM version" /></a>
     <a href="https://www.npmjs.com/package/djs-economy"><img src="https://img.shields.io/npm/dt/djs-economy.svg" alt="NPM downloads" /></a>
     <a href="https://www.patreon.com/jsdevelopment"><img src="https://img.shields.io/badge/donate-patreon-F96854.svg" alt="Patreon" /></a>
@@ -83,7 +83,8 @@ djs.Delete(UserID) //Deletes Users Cash & Bank Balance
 # Pre-Made Commands
 > * [Pay Command](https://github.com/ChaotiqueSlime/djs-economy/blob/main/commands/PAY.md)
 > * [Work Command](https://github.com/ChaotiqueSlime/djs-economy/blob/main/commands/WORK.md)
-> * [Leaderboard Command](https://github.com/ChaotiqueSlime/djs-economy/blob/main/commands/LEADERBOARD.md)
+> * [Cash Leaderboard Command](https://github.com/ChaotiqueSlime/djs-economy/blob/main/commands/CASH_LEADERBOARD.md)
+> * [Bank Leaderboard Command](https://github.com/ChaotiqueSlime/djs-economy/blob/main/commands/BANK_LEADERBOARD.md)
 
 
 
