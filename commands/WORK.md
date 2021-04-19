@@ -1,4 +1,4 @@
-## Pay Command
+## Work Command
 * Note Needs To Be Adapted To Your Command Handler
 
 ```js

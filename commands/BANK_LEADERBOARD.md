@@ -1,11 +1,13 @@
-## Pay Command
+## Cash Leaderboard Command
 * Note Needs To Be Adapted To Your Command Handler
 
 ```js
 const djs = require('djs-economy')
 
+// define member
+
 var output = await djs.Leaderboard({
-    filter: x => x.cash > 50,
+    filter: x => x.bank > 50,
     search: member.id
     })
     
@@ -15,7 +17,7 @@ if (message.mentions.users.first()) {
     
 djs.Leaderboard({
   limit: 4, //You can change the limit to 10 if you want
-  filter: x => x.cash > 50
+  filter: x => x.bank > 50
 }).then(async users => {
 if(users[0]) var firstplace = await client.users.fetch(users[0].userid) 
 if(users[1]) var secondplace = await client.users.fetch(users[1].userid)
@@ -23,10 +25,10 @@ if(users[2]) var thirdplace = await client.users.fetch(users[2].userid)
 if(users[3]) var fourthplace = await client.users.fetch(users[3].userid)
 
 message.channel.send(`
-🥇 ${firstplace && firstplace.tag || 'Nobody Yet'} ⟶  💵 ${users[0] && users[0].cash || 'None'}\n
-🥈 ${secondplace && secondplace.tag || 'Nobody Yet'} ⟶  💵 ${users[1] && users[1].cash || 'None'}\n
-🥉 ${thirdplace && thirdplace.tag || 'Nobody Yet'} ⟶  💵 ${users[2] && users[2].cash || 'None'}\n
-🏅 ${fourthplace && fourthplace.tag || 'Nobody Yet'} ⟶  💵 ${users[3] && users[3].cash || 'None'}\n
+🥇 ${firstplace && firstplace.tag || 'Nobody Yet'} ⟶  💵 ${users[0] && users[0].bank || 'None'}\n
+🥈 ${secondplace && secondplace.tag || 'Nobody Yet'} ⟶  💵 ${users[1] && users[1].bank || 'None'}\n
+🥉 ${thirdplace && thirdplace.tag || 'Nobody Yet'} ⟶  💵 ${users[2] && users[2].bank || 'None'}\n
+🏅 ${fourthplace && fourthplace.tag || 'Nobody Yet'} ⟶  💵 ${users[3] && users[3].bank || 'None'}\n
 **<@${member.user.id}> Your Ranking #${output}**`)
   })
 }
