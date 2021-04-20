@@ -3,5 +3,10 @@ function formatNumber(num) {
     return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
+function randomNumber() {
+    const number = Math.floor(Math.random() * 36)
+    return number;
+}
 
-module.exports = formatNumber;
+
+module.exports = formatNumber, randomNumber;

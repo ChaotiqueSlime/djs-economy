@@ -1,3 +1,6 @@
+const randomNumber = require('./functions');
+
+
 const Sequelize = require('sequelize');
 const queuing = require("./queue.js");
 const dbQueue = new queuing();
@@ -16,7 +19,7 @@ const DB = sequelize.define('Value', {
   bank: Sequelize.INTEGER,
 });
 DB.sync()
-console.log('\x1b[32m%s\x1b[0m', `Economy Database Loaded | For Support Or Help Join Our Discord https://discord.gg/yv3s3b97Sn`);
+console.log('\x1b[31m%s\x1b[0m', `Economy Database Loaded | For Support Or Help Join Our Discord https://discord.gg/yv3s3b97Sn\njs-economy package is always updating and adding better features be sure to follow our #updates channel!`);
 module.exports = {
 
 
@@ -54,7 +57,7 @@ module.exports = {
   },
 
   Func_SetCash: async function (UserID, toSet) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `SetCash function is missing parameters!`); if (!toSet && toSet != 0) throw new Error('\x1b[32m%s\x1b[0m', `SetCash function is missing parameters!`); if (!parseInt(toSet)) throw new Error('\x1b[32m%s\x1b[0m', `SetCash function parameter <amount> needs to be a number!`); toSet = parseInt(toSet);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `SetCash function is missing parameters!`); if (!toSet && toSet != 0) throw new Error('\x1b[31m%s\x1b[0m', `SetCash function is missing parameters!`); if (!parseInt(toSet)) throw new Error('\x1b[31m%s\x1b[0m', `SetCash function parameter <amount> needs to be a number!`); toSet = parseInt(toSet);
     return new Promise(async (resolve, error) => {
       const Info = await DB.update({
         cash: toSet
@@ -78,12 +81,12 @@ module.exports = {
             userid: UserID,
             cash: toSet
           })
-        } catch (e) { if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[32m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e); }
+        } catch (e) { if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[31m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e); }
       }
     });
   },
   Func_GetCash: async function (UserID) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `GetCash function is missing parameters!`);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `GetCash function is missing parameters!`);
     return new Promise(async (resolve, error) => {
       const Info = await DB.findOne({
         where: {
@@ -106,12 +109,12 @@ module.exports = {
           cash: 1
         })
       } catch (e) {
-        if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[32m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e);
+        if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[31m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e);
       }
     });
   },
   Func_AddCash: async function (UserID, toAdd) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `AddCash function is missing parameters!`); if (!toAdd && toAdd != 0) throw new Error('\x1b[32m%s\x1b[0m', `AddCash function is missing parameters!`); if (!parseInt(toAdd)) throw new Error('\x1b[32m%s\x1b[0m', `AddCash function parameter <amount> needs to be a number!`); toAdd = parseInt(toAdd);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `AddCash function is missing parameters!`); if (!toAdd && toAdd != 0) throw new Error('\x1b[31m%s\x1b[0m', `AddCash function is missing parameters!`); if (!parseInt(toAdd)) throw new Error('\x1b[31m%s\x1b[0m', `AddCash function parameter <amount> needs to be a number!`); toAdd = parseInt(toAdd);
     return new Promise(async (resolve, error) => {
       const Info = await DB.findOne({
         where: {
@@ -133,14 +136,14 @@ module.exports = {
             newcash: Info.cash + toAdd,
           })
         }
-        return error('\x1b[32m%s\x1b[0m', `Something went wrong in function AddCash`);
-      } return resolve('\x1b[32m%s\x1b[0m', `ID has no record in database!`);
+        return error('\x1b[31m%s\x1b[0m', `Something went wrong in function AddCash`);
+      } return resolve('\x1b[31m%s\x1b[0m', `ID has no record in database!`);
     });
   },
   Func_LBCash: async function (data) {
-    if (data.limit && !parseInt(data.limit)) throw new Error('\x1b[32m%s\x1b[0m', `Cash Leaderboard function parameter object limit needs to be a number`)
+    if (data.limit && !parseInt(data.limit)) throw new Error('\x1b[31m%s\x1b[0m', `Cash Leaderboard function parameter object limit needs to be a number`)
     if (data.limit) data.limit = parseInt(data.limit)
-    if (data.filter && !data.filter instanceof Function) throw new Error('\x1b[32m%s\x1b[0m', `Cash Leaderboard function parameter object filter needs to be a function!`)
+    if (data.filter && !data.filter instanceof Function) throw new Error('\x1b[31m%s\x1b[0m', `Cash Leaderboard function parameter object filter needs to be a function!`)
     if (!data.filter) data.filter = x => x;
     return new Promise(async (resolve, error) => {
       if (data.search) {
@@ -174,7 +177,7 @@ module.exports = {
     });
   },
   Func_SubCash: async function (UserID, toSubtract) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `SubCash function is missing parameters!`); if (!toSubtract && toSubtract != 0) throw new Error('\x1b[32m%s\x1b[0m', `SubCash function is missing parameters!`); if (!parseInt(toSubtract)) throw new Error('\x1b[32m%s\x1b[0m', `SubCash function parameter toSubtract needs to be a number!`); toSubtract = parseInt(toSubtract);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `SubCash function is missing parameters!`); if (!toSubtract && toSubtract != 0) throw new Error('\x1b[31m%s\x1b[0m', `SubCash function is missing parameters!`); if (!parseInt(toSubtract)) throw new Error('\x1b[31m%s\x1b[0m', `SubCash function parameter toSubtract needs to be a number!`); toSubtract = parseInt(toSubtract);
     return new Promise(async (resolve, error) => {
       const Info = await DB.findOne({
         where: {
@@ -196,8 +199,8 @@ module.exports = {
             newcash: Info.cash - toSubtract
           })
         }
-        return error('\x1b[32m%s\x1b[0m', `Something went wrong in function SubCash`);
-      } return resolve('\x1b[32m%s\x1b[0m', `ID has no record in database!`);
+        return error('\x1b[31m%s\x1b[0m', `Something went wrong in function SubCash`);
+      } return resolve('\x1b[31m%s\x1b[0m', `ID has no record in database!`);
     });
   },
 
@@ -239,7 +242,7 @@ module.exports = {
   },
 
   Func_SetBank: async function (UserID, toSet) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `SetBank function is missing parameters!`); if (!toSet && toSet != 0) throw new Error('\x1b[32m%s\x1b[0m', `SetBank function is missing parameters!`); if (!parseInt(toSet)) throw new Error('\x1b[32m%s\x1b[0m', `SetBank function parameter <amount> needs to be a number!`); toSet = parseInt(toSet);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `SetBank function is missing parameters!`); if (!toSet && toSet != 0) throw new Error('\x1b[31m%s\x1b[0m', `SetBank function is missing parameters!`); if (!parseInt(toSet)) throw new Error('\x1b[31m%s\x1b[0m', `SetBank function parameter <amount> needs to be a number!`); toSet = parseInt(toSet);
     return new Promise(async (resolve, error) => {
       const Info = await DB.update({
         bank: toSet
@@ -263,12 +266,12 @@ module.exports = {
             userid: UserID,
             bank: toSet
           })
-        } catch (e) { if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[32m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e); }
+        } catch (e) { if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[31m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e); }
       }
     });
   },
   Func_GetBank: async function (UserID) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `GetBank function is missing parameters!`);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `GetBank function is missing parameters!`);
     return new Promise(async (resolve, error) => {
       const Info = await DB.findOne({
         where: {
@@ -291,12 +294,12 @@ module.exports = {
           bank: 1
         })
       } catch (e) {
-        if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[32m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e);
+        if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[31m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e);
       }
     });
   },
   Func_AddBank: async function (UserID, toAdd) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `AddBank function is missing parameters!`); if (!toAdd && toAdd != 0) throw new Error('\x1b[32m%s\x1b[0m', `AddBank function is missing parameters!`); if (!parseInt(toAdd)) throw new Error('\x1b[32m%s\x1b[0m', `AddBank function parameter <amount> needs to be a number!`); toAdd = parseInt(toAdd);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `AddBank function is missing parameters!`); if (!toAdd && toAdd != 0) throw new Error('\x1b[31m%s\x1b[0m', `AddBank function is missing parameters!`); if (!parseInt(toAdd)) throw new Error('\x1b[31m%s\x1b[0m', `AddBank function parameter <amount> needs to be a number!`); toAdd = parseInt(toAdd);
     return new Promise(async (resolve, error) => {
       const Info = await DB.findOne({
         where: {
@@ -318,14 +321,14 @@ module.exports = {
             newbank: Info.bank + toAdd,
           })
         }
-        return error('\x1b[32m%s\x1b[0m', `Something went wrong in function AddBank`);
-      } return resolve('\x1b[32m%s\x1b[0m', `ID has no record in database!`);
+        return error('\x1b[31m%s\x1b[0m', `Something went wrong in function AddBank`);
+      } return resolve('\x1b[31m%s\x1b[0m', `ID has no record in database!`);
     });
   },
   Func_LBBank: async function (data) {
-    if (data.limit && !parseInt(data.limit)) throw new Error('\x1b[32m%s\x1b[0m', `Banl Leaderboard function parameter object limit needs to be a number`)
+    if (data.limit && !parseInt(data.limit)) throw new Error('\x1b[31m%s\x1b[0m', `Banl Leaderboard function parameter object limit needs to be a number`)
     if (data.limit) data.limit = parseInt(data.limit)
-    if (data.filter && !data.filter instanceof Function) throw new Error('\x1b[32m%s\x1b[0m', `Bank Leaderboard function parameter object filter needs to be a function!`)
+    if (data.filter && !data.filter instanceof Function) throw new Error('\x1b[31m%s\x1b[0m', `Bank Leaderboard function parameter object filter needs to be a function!`)
     if (!data.filter) data.filter = x => x;
     return new Promise(async (resolve, error) => {
       if (data.search) {
@@ -359,7 +362,7 @@ module.exports = {
     });
   },
   Func_SubBank: async function (UserID, toSubtract) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `SubBank function is missing parameters!`); if (!toSubtract && toSubtract != 0) throw new Error('\x1b[32m%s\x1b[0m', `SubBank function is missing parameters!`); if (!parseInt(toSubtract)) throw new Error('\x1b[32m%s\x1b[0m', `SubBank function parameter toSubtract needs to be a number!`); toSubtract = parseInt(toSubtract);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `SubBank function is missing parameters!`); if (!toSubtract && toSubtract != 0) throw new Error('\x1b[31m%s\x1b[0m', `SubBank function is missing parameters!`); if (!parseInt(toSubtract)) throw new Error('\x1b[31m%s\x1b[0m', `SubBank function parameter toSubtract needs to be a number!`); toSubtract = parseInt(toSubtract);
     return new Promise(async (resolve, error) => {
       const Info = await DB.findOne({
         where: {
@@ -381,8 +384,8 @@ module.exports = {
             newbank: Info.bank - toSubtract
           })
         }
-        return error('\x1b[32m%s\x1b[0m', `Something went wrong in function SubBank`);
-      } return resolve('\x1b[32m%s\x1b[0m', `ID has no record in database!`);
+        return error('\x1b[31m%s\x1b[0m', `Something went wrong in function SubBank`);
+      } return resolve('\x1b[31m%s\x1b[0m', `ID has no record in database!`);
     });
   },
 
@@ -397,7 +400,7 @@ module.exports = {
   },
 
   Func_Delete: async function (UserID) {
-    if (!UserID) throw new Error('\x1b[32m%s\x1b[0m', `Delete function is missing parameters!`)
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `Delete function is missing parameters!`)
     const DeleteProm = new Promise(async (resolve, error) => {
       const Info = await DB.destroy({
         where: {
@@ -423,9 +426,9 @@ module.exports = {
 
   Pay: async function (SenderID, ReceiverID, Amount) {
     const money = Math.abs(Amount)
-    if (!SenderID) throw new Error(`Missing Parameter Pay Function Needs A SenderID`); if (!parseInt(SenderID)) throw new Error(`Pay Function Parameter SenderID needs to be a Integer`);
-    if (!ReceiverID) throw new Error(`Missing Parameter Pay Function Needs A ReceiverID`); if (!parseInt(ReceiverID)) throw new Error(`Pay Function Parameter ReceiverID needs to be a Integer`);
-    if (!Amount) throw new Error(`Missing Parameter Pay Function Needs A Amount`); if (!parseInt(Amount)) throw new Error(`Pay Function Parameter Amount needs to be a Number`);
+    if (!SenderID) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Pay Function Needs A SenderID`); if (!parseInt(SenderID)) throw new Error('\x1b[31m%s\x1b[0m', `Pay Function Parameter SenderID needs to be a Integer`);
+    if (!ReceiverID) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Pay Function Needs A ReceiverID`); if (!parseInt(ReceiverID)) throw new Error(`'\x1b[31m%s\x1b[0m', Pay Function Parameter ReceiverID needs to be a Integer`);
+    if (!Amount) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Pay Function Needs A Amount`); if (!parseInt(Amount)) throw new Error('\x1b[31m%s\x1b[0m', `Pay Function Parameter Amount needs to be a Number`);
 
     const sender_cash = await this.GetCash(SenderID);
     const bal = parseInt(sender_cash.cash - money)
@@ -440,9 +443,9 @@ module.exports = {
     const jobs = ['cashier', 'shopkeeper', 'stripper', 'scrapper', 'cleaner', 'preist', 'theif', 'robber', 'president', 'drug dealer', 'killer', 'buisness man', 'stocks person', 'cook', 'officer', 'developer', 'cop', 'chef', 'maid', 'butler', 'youtuber', 'construction worker', 'singer']
     const failure = ['failure', 'hobo', 'chump', 'disappointment', 'couch potato']
     let job = jobs[Math.floor(Math.random() * jobs.length)]
-    if (!Minimum) throw new Error(`Missing Parameter Work Function Needs A Minimum Example | const work = djs.Work(1000) |`); if (!parseInt(Minimum)) throw new Error('Work function parameter minimum needs to be a number!');
-    if (!Maximum) throw new Error(`Missing Parameter Work Function Needs A Maximum Example | const work = djs.Work(1000, 2000) |`); if (!parseInt(Maximum)) throw new Error('Work function parameter maximum needs to be a number!');
-    if (!UserID) throw new Error(`Missing Parameter Work Function Needs A UserID Example | const work = djs.Work(1000, 2000, message.author.id) |`); if (!parseInt(UserID)) throw new Error('Work function parameter UserID needs to be a integer');
+    if (!Minimum) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Work Function Needs A Minimum Example | const work = djs.Work(1000) |`); if (!parseInt(Minimum)) throw new Error('\x1b[31m%s\x1b[0m', 'Work function parameter minimum needs to be a number!');
+    if (!Maximum) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Work Function Needs A Maximum Example | const work = djs.Work(1000, 2000) |`); if (!parseInt(Maximum)) throw new Error('\x1b[31m%s\x1b[0m', 'Work function parameter maximum needs to be a number!');
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Work Function Needs A UserID Example | const work = djs.Work(1000, 2000, message.author.id) |`); if (!parseInt(UserID)) throw new Error('\x1b[31m%s\x1b[0m', 'Work function parameter UserID needs to be a integer');
     const money = Math.floor(Math.random() * (Maximum - Minimum + 1)) + Minimum;
     let cash = money;
     if (rate < 0.5) {
@@ -462,8 +465,8 @@ module.exports = {
 
   //Banking Functions
   Deposit: async function (UserID, Amount) {
-    if (!UserID) throw new Error(`Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new Error(`Deposit Function Parameter UserID needs to be a Integer`);
-    if (!Amount) throw new Error(`Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new Error(`Deposit Function Parameter Amount needs to be a Number`);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new Error('\x1b[31m%s\x1b[0m', `Deposit Function Parameter UserID needs to be a Integer`);
+    if (!Amount) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new Error('\x1b[31m%s\x1b[0m', `Deposit Function Parameter Amount needs to be a Number`);
     const DepAmount = Math.abs(Amount)
 
     const FetchCash = await this.GetCash(UserID);
@@ -478,8 +481,8 @@ module.exports = {
   },
 
   Withdraw: async function (UserID, Amount) {
-    if (!UserID) throw new Error(`Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new Error(`Deposit Function Parameter UserID needs to be a Integer`);
-    if (!Amount) throw new Error(`Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new Error(`Deposit Function Parameter Amount needs to be a Number`);
+    if (!UserID) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new Error('\x1b[31m%s\x1b[0m', `Deposit Function Parameter UserID needs to be a Integer`);
+    if (!Amount) throw new Error('\x1b[31m%s\x1b[0m', `Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new Error('\x1b[31m%s\x1b[0m', `Deposit Function Parameter Amount needs to be a Number`);
     const WithAmount = Math.abs(Amount);
 
     const FetchCash = await this.GetCash(UserID);
@@ -493,5 +496,23 @@ module.exports = {
     return { cash, bank }
   },
 
+
+  //Casino Games
+
+      // Roulette Game
+  Roulette: async function (Number) {
+    
+    if(!Number || !parseInt(Number)) throw new Error('\x1b[31m%s\x1b[0m', `Roulette Function Parameter Is Not A Number Or Is Not Provided`);
+    const WinnerNumbers = [randomNumber(), randomNumber(), randomNumber(), randomNumber(), randomNumber()];
+
+    var output = false;
+
+    if(WinnerNumbers.includes(Number)) output = true;
+
+    return { output }
+
+  },
+
+      // Black Jack Functions
 
 }

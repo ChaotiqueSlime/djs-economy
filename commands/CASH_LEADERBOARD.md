@@ -2,6 +2,8 @@
 * Note Needs To Be Adapted To Your Command Handler
 
 ```js
+// Note! must be in an async function
+
 const djs = require('djs-economy')
 
 // define member

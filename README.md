@@ -63,6 +63,8 @@ djs.SetBank(UserID, Amount) // Set Money For Bank Balance
 ### Getting Cash/Bank
 ```js
 // [UserID] param1 must be a discord user id
+// Note! must be in an async function
+
 const djs = require('djs-economy')
 
 const FetchCash = await djs.GetCash(UserID) //Gets Cash Balance

@@ -2,7 +2,9 @@
 * Note Needs To Be Adapted To Your Command Handler
 
 ```js
-const DB = require('djs-economy')
+// Note! must be in an async function
+
+const djs = require('djs-economy')
 
 var user = message.mentions.users.first()
 var amount = args[2] //Args might be diffrent because of your handler
@@ -14,7 +16,7 @@ if (!amount) {
     return message.reply('Specify the amount you want to pay!'); 
   }
 
-const transfer = await DB.Pay(message.author.id, user.id, amount)
+const transfer = await djs.Pay(message.author.id, user.id, amount)
 //message.author.id = Person Paying
 //user.id = Person Receiving Money
 
