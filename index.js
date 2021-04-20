@@ -440,9 +440,9 @@ module.exports = {
     const jobs = ['cashier', 'shopkeeper', 'stripper', 'scrapper', 'cleaner', 'preist', 'theif', 'robber', 'president', 'drug dealer', 'killer', 'buisness man', 'stocks person', 'cook', 'officer', 'developer', 'cop', 'chef', 'maid', 'butler', 'youtuber', 'construction worker', 'singer']
     const failure = ['failure', 'hobo', 'chump', 'disappointment', 'couch potato']
     let job = jobs[Math.floor(Math.random() * jobs.length)]
-    if (!Minimum) throw new error(`Missing Parameter Work Function Needs A Minimum Example | const work = djs.Work(1000) |`); if (!parseInt(Minimum)) throw new Error('Work function parameter minimum needs to be a number!');
-    if (!Maximum) throw new error(`Missing Parameter Work Function Needs A Maximum Example | const work = djs.Work(1000, 2000) |`); if (!parseInt(Maximum)) throw new Error('Work function parameter maximum needs to be a number!');
-    if (!UserID) throw new error(`Missing Parameter Work Function Needs A UserID Example | const work = djs.Work(1000, 2000, message.author.id) |`); if (!parseInt(UserID)) throw new Error('Work function parameter UserID needs to be a integer');
+    if (!Minimum) throw new Error(`Missing Parameter Work Function Needs A Minimum Example | const work = djs.Work(1000) |`); if (!parseInt(Minimum)) throw new Error('Work function parameter minimum needs to be a number!');
+    if (!Maximum) throw new Error(`Missing Parameter Work Function Needs A Maximum Example | const work = djs.Work(1000, 2000) |`); if (!parseInt(Maximum)) throw new Error('Work function parameter maximum needs to be a number!');
+    if (!UserID) throw new Error(`Missing Parameter Work Function Needs A UserID Example | const work = djs.Work(1000, 2000, message.author.id) |`); if (!parseInt(UserID)) throw new Error('Work function parameter UserID needs to be a integer');
     const money = Math.floor(Math.random() * (Maximum - Minimum + 1)) + Minimum;
     let cash = money;
     if (rate < 0.5) {
@@ -462,8 +462,8 @@ module.exports = {
 
   //Banking Functions
   Deposit: async function (UserID, Amount) {
-    if (!UserID) throw new error(`Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new error(`Deposit Function Parameter UserID needs to be a Integer`);
-    if (!Amount) throw new error(`Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new error(`Deposit Function Parameter Amount needs to be a Number`);
+    if (!UserID) throw new Error(`Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new Error(`Deposit Function Parameter UserID needs to be a Integer`);
+    if (!Amount) throw new Error(`Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new Error(`Deposit Function Parameter Amount needs to be a Number`);
     const DepAmount = Math.abs(Amount)
 
     const FetchCash = await this.GetCash(UserID);
@@ -478,8 +478,8 @@ module.exports = {
   },
 
   Withdraw: async function (UserID, Amount) {
-    if (!UserID) throw new error(`Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new error(`Deposit Function Parameter UserID needs to be a Integer`);
-    if (!Amount) throw new error(`Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new error(`Deposit Function Parameter Amount needs to be a Number`);
+    if (!UserID) throw new Error(`Missing Parameter Deposit Function Needs A UserID`); if (!parseInt(UserID)) throw new Error(`Deposit Function Parameter UserID needs to be a Integer`);
+    if (!Amount) throw new Error(`Missing Parameter Deposit Function Needs An Amount`); if (!parseInt(Amount)) throw new Error(`Deposit Function Parameter Amount needs to be a Number`);
     const WithAmount = Math.abs(Amount);
 
     const FetchCash = await this.GetCash(UserID);
