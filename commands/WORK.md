@@ -7,7 +7,9 @@ const djs = require('djs-economy')
 // Minimum & Maximum param is the money you can get example 1000-2000
 // [UserID] param must be a discord user id
 
-const work = djs.work(Minimum, Maximum, UserID)
+const work = djs.Work(Minimum, Maximum, UserID)
+
+//Define Minimum, Maximum, & UserID
 
 message.channel.send(`you worked as a ${work.job} and earned ${work.cash}`)
 
