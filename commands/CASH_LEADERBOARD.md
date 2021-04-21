@@ -8,7 +8,7 @@ const djs = require('djs-economy')
 
 // define member
 
-var output = await djs.Leaderboard({
+var output = await djs.LeaderboardCash({
     filter: x => x.cash > 50,
     search: member.id
     })
@@ -17,7 +17,7 @@ if (message.mentions.users.first()) {
         message.channel.send(`**${member.user.tag}** Is **#${output}** On The Leaderboard!`);
     } else {
     
-djs.Leaderboard({
+djs.LeaderboardCash({
   limit: 4, //You can change the limit to 10 if you want
   filter: x => x.cash > 50
 }).then(async users => {
