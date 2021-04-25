@@ -75,7 +75,8 @@ module.exports = {
         try {
           const Info2 = await DB.create({
             userID: UserID,
-            cash: 1
+            cash: 100,
+            bank: 100
           });
           return resolve({
             userid: UserID,
@@ -102,11 +103,12 @@ module.exports = {
       try {
         const Info2 = await DB.create({
           userID: UserID,
-          cash: 1
+          cash: 100,
+          bank: 100
         });
         return resolve({
           userid: UserID,
-          cash: 1
+          cash: 100
         })
       } catch (e) {
         if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[31m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e);
@@ -260,7 +262,8 @@ module.exports = {
         try {
           const Info2 = await DB.create({
             userID: UserID,
-            bank: 1
+            cash: 100,
+            bank: 100
           });
           return resolve({
             userid: UserID,
@@ -287,11 +290,12 @@ module.exports = {
       try {
         const Info2 = await DB.create({
           userID: UserID,
-          bank: 1
+          cash: 100,
+          bank: 100
         });
         return resolve({
           userid: UserID,
-          bank: 1
+          bank: 100
         })
       } catch (e) {
         if (e.name === 'SequelizeUniqueConstraintError') { return resolve('\x1b[31m%s\x1b[0m', `Duplicate Found, shouldn\'t happen in this function, check typo\'s`); } return error(e);
